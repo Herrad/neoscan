@@ -1,0 +1,13 @@
+<div class="character-select">
+  <h1>Welcome to Neoscan</h1>
+  <p>{{flavourText}}</p>
+  <p>This tool will actively scan your character damage logs and render the damage you recieve as you recieve it</p>
+  <p>Note: You must enable logging by adding <span class="code">ENABLELOG = "TRUE"</span> to your neocron.ini file. This
+    file can be found in your neocron game install directory.</p>
+  <p>Please select the character you would like to monitor:</p>
+  <ul>
+    {{#each characters}}
+    <li>{{this.name}}</li>
+    {{/each}}
+  </ul>
+</div>

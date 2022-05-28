@@ -1,5 +1,4 @@
 'use strict'
-const colors = require('colors');
 
 module.exports = function (description, baseDamageAmount, classCap) {
     classCap = classCap || 80

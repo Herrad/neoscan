@@ -2,6 +2,7 @@
 const program = require('commander');
 const watch = require('./analyse/liveScan')().watchLogFile;
 const scanner = require('./analyse/scan')();
+const server = require('./web')();
 
 program
     .command('watch <name> [path]')
@@ -17,6 +18,11 @@ program
     .command('dumbscan <name> [path]')
     .description(`Scans an existing neocron log file and exits`)
     .action(scanner.dumb)
+
+program
+    .command('web [path]')
+    .description('Launches a web server and page to view logs')
+    .action(server.launch)
 
 program
     .option('-h, --healing', 'filter out healing results')
