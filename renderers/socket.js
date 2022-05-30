@@ -11,7 +11,7 @@ function createWebSocket(port) {
 
   return {
     render: (data) => {
-      ws.send(data);
+      if(activeClient) activeClient.send(data);
     }
   };
 }

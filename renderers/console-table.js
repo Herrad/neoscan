@@ -21,7 +21,6 @@ module.exports = function createRenderer() {
 
   return {
     render: (damageTypes) => {
-      console.log('hello'['yellow'])
       const table = new Table({
         head: ['Damage Taken', 'Maximum Damage', 'Reduced By', 'Type', 'Resistance Breakdown'],
         colWidths: [15, 20, 18, 15, 75]

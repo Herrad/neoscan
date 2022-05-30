@@ -12,7 +12,7 @@ const open = require('open');
 
 function createServer(basePath) {
   const socketPort = normalizePort(3001);
-  const socketServer = require('./socket')(socketPort);
+  const socketServer = require('../renderers/socket')(socketPort);
 
   var indexRouter = require('./routes/index')(basePath);
   var characterRouter = require('./routes/character')(basePath, socketServer)

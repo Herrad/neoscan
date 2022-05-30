@@ -16,15 +16,12 @@ function createRouter(basePath) {
         if(err) return reject(err);
         
         files.forEach(file => {
-          console.log(file)
           const matches = file.match(characterRegex);
-          console.log(matches);
           if(matches && matches.length > 0) characters.push({
             name: matches[1],
             path: `$basePath\\$file`
           });
         });
-        console.log(characters);
         return resolve(characters);
       });
     });
