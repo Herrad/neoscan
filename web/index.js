@@ -11,7 +11,11 @@ const hbs = require('hbs');
 const open = require('open');
 
 function createServer(basePath) {
+  const socketPort = normalizePort(3001);
+  const socketServer = require('./socket')(socketPort);
+
   var indexRouter = require('./routes/index')(basePath);
+  var characterRouter = require('./routes/character')(basePath, socketServer)
 
   var app = express();
 
@@ -26,6 +30,7 @@ function createServer(basePath) {
   app.use(express.static(path.join(__dirname, 'public')));
 
   app.use('/', indexRouter);
+  app.use('/character', characterRouter);
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
