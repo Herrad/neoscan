@@ -1,5 +1,6 @@
 'use strict'
 const Table = require('cli-table');
+require('colors')
 
 module.exports = function createRenderer() {
   const reductionColours = {
@@ -20,7 +21,7 @@ module.exports = function createRenderer() {
 
   return {
     render: (damageTypes) => {
-      console.log(typeColours)
+      console.log('hello'['yellow'])
       const table = new Table({
         head: ['Damage Taken', 'Maximum Damage', 'Reduced By', 'Type', 'Resistance Breakdown'],
         colWidths: [15, 20, 18, 15, 75]
@@ -30,8 +31,6 @@ module.exports = function createRenderer() {
         const reductionsMessage = damageData.reductions.map(reduction => {
           return `${reduction.source} ${reduction.reducedDamageBy.toFixed(2)} (${(reduction.reducedDamageBy / damageData.reducedDamage * 100).toFixed(0)}%)`[reductionColours[reduction.source]];
         }).join(' ');
-
-        console.log(damageData.reductions);
 
         table.push([
           `${damageData.totalDamageAfterReduction.toFixed(2)}`[typeColours[damageData.description]] || `${damageData.totalDamageAfterReduction.toFixed(2)}`,
