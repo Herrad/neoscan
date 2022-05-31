@@ -4,8 +4,8 @@ const LineParser = require('./lineParser');
 const crash = require('../crash');
 const logFile = require('./logFile')
 
-module.exports = function createLiveScanner() {
-    const parser = new LineParser();
+module.exports = function createLiveScanner(renderer) {
+    const parser = new LineParser(renderer);
 
     function poll(options, path) {
         const scan = new Tail(path);
@@ -15,7 +15,7 @@ module.exports = function createLiveScanner() {
     }
 
     return {
-        watchLogFile: function(options, characterName, path) {
+        scan: function (options, characterName, path) {
             poll(options, logFile(characterName, path));
         }
     }

@@ -4,8 +4,8 @@ const LineParser = require('./lineParser');
 const crash = require('../crash');
 const logFile = require('./logFile');
 
-module.exports = function scanner() {
-    const parser = new LineParser();
+module.exports = function scanner(renderer) {
+    const parser = new LineParser(renderer);
 
     function runScan(characterName, path, lineRead) {
         const stream = require('readline').createInterface({

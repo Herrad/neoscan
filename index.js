@@ -1,12 +1,15 @@
 'use strict'
 const program = require('commander');
-const watch = require('./analyse/liveScan')().watchLogFile;
-const scanner = require('./analyse/scan')();
+const consoleRenderer = require('./renderers/console-table')()
+const watcher = require('./analyse/liveScan')(consoleRenderer);
+const scanner = require('./analyse/scan')(consoleRenderer);
+
+const createServer = require('./web');
 
 program
     .command('watch <name> [path]')
     .description(`Watches a neocron log file in real-time`)
-    .action(watch.bind(null, program))
+    .action(watcher.scan.bind(null, program))
 
 program
     .command('scan <name> [path]')
@@ -14,9 +17,9 @@ program
     .action(scanner.scan.bind(null, program))
 
 program
-    .command('dumbscan <name> [path]')
-    .description(`Scans an existing neocron log file and exits`)
-    .action(scanner.dumb)
+    .command('web [path]')
+    .description('Launches a web server and page to view logs')
+    .action(() => createServer(program.path).launch())
 
 program
     .option('-h, --healing', 'filter out healing results')
