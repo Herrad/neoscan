@@ -1,12 +1,12 @@
 var express = require('express');
-var createLiveScanner = require('../../analyse/liveScan');
+var createLiveScanner = require('../../analyse/scan');
 
 function createRouter(path, socketServer) {
   var router = express.Router();
-  
+
   router.get('/', (req, res) => res.redirect('/'));
   router.get('/:characterName', (req, res) => {
-    createLiveScanner(socketServer).watchLogFile({}, req.params.characterName, path);
+    createLiveScanner(socketServer).scan({}, req.params.characterName, path);
     res.render('character')
   });
 

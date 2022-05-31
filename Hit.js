@@ -12,9 +12,10 @@ module.exports = function (renderer) {
             currentType = 0;
         }
     }
-    
+
     function log() {
         closeType();
+        console.log('rendering')
         renderer.render(damageData);
     }
 
