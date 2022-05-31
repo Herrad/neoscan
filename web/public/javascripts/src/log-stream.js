@@ -94,6 +94,10 @@ function routeMessage(event) {
   }
 }
 
+function scan() {
+  $.get(`${document.URL}/scan`);
+}
+
 window.onload = function () {
   const socket = new WebSocket('ws://localhost:3001')
   socket.onmessage = routeMessage

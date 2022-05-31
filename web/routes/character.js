@@ -12,7 +12,7 @@ function createRouter(path, socketServer) {
   });
   router.get('/:characterName/scan', (req, res) => {
     createScanner(socketServer).scan({}, req.params.characterName, path);
-    setTimeout(() => res.json(data), 500);
+    res.sendStatus(204)
   })
 
   return router;
