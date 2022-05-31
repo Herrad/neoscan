@@ -31,7 +31,7 @@ a {
 
 .hit {
   width: 80%;
-  margin: auto;
+  margin: 20px auto;
   border: solid white 2px;
   padding-bottom: 10px;
   font-size: 18px;
@@ -44,22 +44,29 @@ a {
 
 .hit table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 .hit table th {
   text-align: left;
   /* border-left: 1px solid white; */
-  padding-left: 20px
+  padding: 15px 0 15px 20px;
 }
 
 .hit table td {
   width: 15%;
   /* border-left: 1px solid white; */
-  padding-left: 20px;
+  padding: 15px 0 15px 20px;
 }
 
 .hit table td.resistance {
   width: 40%;
+  text-align: right;
+}
+
+.hit table td.resistance span {
+  padding-right: 7%;
+  text-align: right;
 }
 
 .hit table tr.Healing {

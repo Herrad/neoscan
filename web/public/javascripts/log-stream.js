@@ -94,6 +94,12 @@ var HitTable = function HitTable(_ref) {
 
 var DamageType = function DamageType(_ref2) {
   var damageEntry = _ref2.damageEntry;
+
+
+  var resistancesToRender = damageEntry.reductions.map(function (reduction) {
+    return React.createElement(Resistance, { reduction: reduction, totalReducedDamage: damageEntry.reducedDamage, key: reduction.source });
+  });
+
   return React.createElement(
     "tr",
     { className: damageEntry.description },
@@ -120,10 +126,23 @@ var DamageType = function DamageType(_ref2) {
     React.createElement(
       "td",
       { className: "resistance" },
-      damageEntry.reductions.map(function (reduction) {
-        return reduction.source + " " + reduction.reducedDamageBy.toFixed(2) + " (" + (reduction.reducedDamageBy / damageEntry.reducedDamage * 100).toFixed(0) + "%)";
-      }).join(' ')
+      resistancesToRender
     )
+  );
+};
+
+var Resistance = function Resistance(_ref3) {
+  var reduction = _ref3.reduction,
+      totalReducedDamage = _ref3.totalReducedDamage;
+  return React.createElement(
+    "span",
+    { className: "resistance" },
+    reduction.source,
+    " ",
+    reduction.reducedDamageBy.toFixed(2),
+    " (",
+    (reduction.reducedDamageBy / totalReducedDamage * 100).toFixed(0),
+    "%)"
   );
 };
 

@@ -58,15 +58,24 @@ const HitTable = ({ hitData }) => {
   );
 }
 
-const DamageType = ({ damageEntry }) => <tr className={damageEntry.description}>
-  <td>{damageEntry.totalDamageAfterReduction.toFixed(2)}</td>
-  <td>{damageEntry.baseDamageAmount.toFixed(2)}</td>
-  <td>{damageEntry.reducedDamage.toFixed(2)}</td>
-  <td>{damageEntry.description}</td>
-  <td className="resistance">{damageEntry.reductions.map(reduction => {
-    return `${reduction.source} ${reduction.reducedDamageBy.toFixed(2)} (${(reduction.reducedDamageBy / damageEntry.reducedDamage * 100).toFixed(0)}%)`;
-  }).join(' ')}</td>
-</tr>
+const DamageType = ({ damageEntry }) => {
+
+  const resistancesToRender = damageEntry.reductions.map(reduction => {
+    return <Resistance reduction={reduction} totalReducedDamage={damageEntry.reducedDamage} key={reduction.source} />
+  })
+
+  return (<tr className={damageEntry.description}>
+    <td>{damageEntry.totalDamageAfterReduction.toFixed(2)}</td>
+    <td>{damageEntry.baseDamageAmount.toFixed(2)}</td>
+    <td>{damageEntry.reducedDamage.toFixed(2)}</td>
+    <td>{damageEntry.description}</td>
+    <td className="resistance">{resistancesToRender}</td>
+  </tr>)
+}
+
+const Resistance = ({ reduction, totalReducedDamage }) => <span className="resistance">
+  {reduction.source} {reduction.reducedDamageBy.toFixed(2)} ({(reduction.reducedDamageBy / totalReducedDamage * 100).toFixed(0)}%)
+</span>
 
 function prependLogData(logs) {
   logData.push(logs);

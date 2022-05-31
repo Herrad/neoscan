@@ -20,9 +20,7 @@ function createWebSocket(port) {
 
   return {
     render: (data) => {
-      console.log('asked to render', data)
       if (activeClient) {
-        console.log('will send', JSON.stringify({ type: 'log-data', logs: data }))
         return activeClient.send(JSON.stringify({ type: 'log-data', logs: data }));
       }
       dataQueue.push(data);
