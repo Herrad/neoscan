@@ -16,8 +16,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-react-app": "^3.1.2",
     "cli-table": "^0.3.1",
     "colors": "^1.4.0",
     "commander": "^5.0.0",
