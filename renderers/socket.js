@@ -12,15 +12,17 @@ function createWebSocket(port) {
   let dataQueue = [];
 
   function pushData() {
+    if (dataQueue.length === 0) return;
     if (!activeClient) return setTimeout(pushData, 1000);
-    console.log('sending data');
     dataQueue.map(data => activeClient.send(JSON.stringify({ type: 'log-data', logs: data })));
     dataQueue = [];
   }
 
   return {
     render: (data) => {
+      console.log('asked to render', data)
       if (activeClient) {
+        console.log('will send', JSON.stringify({ type: 'log-data', logs: data }))
         return activeClient.send(JSON.stringify({ type: 'log-data', logs: data }));
       }
       dataQueue.push(data);

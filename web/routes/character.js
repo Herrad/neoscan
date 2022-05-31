@@ -1,5 +1,5 @@
 var express = require('express');
-var createLiveScanner = require('../../analyse/scan');
+var createLiveScanner = require('../../analyse/liveScan');
 
 function createRouter(path, socketServer) {
   var router = express.Router();

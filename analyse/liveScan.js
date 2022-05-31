@@ -15,7 +15,7 @@ module.exports = function createLiveScanner(renderer) {
     }
 
     return {
-        watchLogFile: function(options, characterName, path) {
+        scan: function (options, characterName, path) {
             poll(options, logFile(characterName, path));
         }
     }

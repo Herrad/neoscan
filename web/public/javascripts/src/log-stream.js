@@ -27,49 +27,51 @@
 
 let logData = [];
 const e = React.createElement;
+const container = document.querySelector('#log-container')
+const root = ReactDOM.createRoot(container);
 
 const HitTable = ({ hitData }) => {
-  const dataToRender = logData.map(damageType => {
+  const dataToRender = hitData.map(damageType => {
     return <DamageType damageEntry={damageType} key={damageType.description} />
   })
 
+  if (!dataToRender.length) return;
+
   return (
-    <table className="hit">
-      <thead>
-        <tr>
-          <th>Damage Taken</th>
-          <th>Maximum Damage</th>
-          <th>Reduced By</th>
-          <th>Type</th>
-          <th>Resistance Breakdown</th>
-        </tr>
-      </thead>
-      <tbody>
-        {dataToRender}
-      </tbody>
-    </table>
+    <div className="hit">
+      <h2>Hit Registered!</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Damage Taken</th>
+            <th>Maximum Damage</th>
+            <th>Reduced By</th>
+            <th>Type</th>
+            <th className="resistance">Resistance Breakdown</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dataToRender}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
-const DamageType = ({ damageEntry }) => <tr>
+const DamageType = ({ damageEntry }) => <tr className={damageEntry.description}>
   <td>{damageEntry.totalDamageAfterReduction.toFixed(2)}</td>
   <td>{damageEntry.baseDamageAmount.toFixed(2)}</td>
   <td>{damageEntry.reducedDamage.toFixed(2)}</td>
   <td>{damageEntry.description}</td>
-  <td>{damageEntry.reductions.map(reduction => {
+  <td className="resistance">{damageEntry.reductions.map(reduction => {
     return `${reduction.source} ${reduction.reducedDamageBy.toFixed(2)} (${(reduction.reducedDamageBy / damageEntry.reducedDamage * 100).toFixed(0)}%)`;
   }).join(' ')}</td>
 </tr>
 
 function prependLogData(logs) {
-  logData = logs.reduce((overall, hit) => {
-    overall.push(hit);
-    return overall;
-  }, logData).reverse().slice(0, 20);
-  const container = document.querySelector('#log-container')
-  const root = ReactDOM.createRoot(container);
+  logData.push(logs);
 
-  root.render(logData.map(hit => <HitTable hitData={hit} />))
+  root.render(logData.reverse().map(hit => <HitTable hitData={hit} />))
 }
 
 function routeMessage(event) {

@@ -15,7 +15,6 @@ module.exports = function (renderer) {
 
     function log() {
         closeType();
-        console.log('rendering')
         renderer.render(damageData);
     }
 

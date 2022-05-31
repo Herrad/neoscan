@@ -27,54 +27,67 @@
 
 var logData = [];
 var e = React.createElement;
+var container = document.querySelector('#log-container');
+var root = ReactDOM.createRoot(container);
 
 var HitTable = function HitTable(_ref) {
   var hitData = _ref.hitData;
 
-  var dataToRender = logData.map(function (damageType) {
+  var dataToRender = hitData.map(function (damageType) {
     return React.createElement(DamageType, { damageEntry: damageType, key: damageType.description });
   });
 
+  if (!dataToRender.length) return;
+
   return React.createElement(
-    'table',
-    { className: 'hit' },
+    "div",
+    { className: "hit" },
     React.createElement(
-      'thead',
+      "h2",
       null,
-      React.createElement(
-        'tr',
-        null,
-        React.createElement(
-          'th',
-          null,
-          'Damage Taken'
-        ),
-        React.createElement(
-          'th',
-          null,
-          'Maximum Damage'
-        ),
-        React.createElement(
-          'th',
-          null,
-          'Reduced By'
-        ),
-        React.createElement(
-          'th',
-          null,
-          'Type'
-        ),
-        React.createElement(
-          'th',
-          null,
-          'Resistance Breakdown'
-        )
-      )
+      "Hit Registered!"
     ),
     React.createElement(
-      'tbody',
+      "table",
       null,
-      dataToRender
+      React.createElement(
+        "thead",
+        null,
+        React.createElement(
+          "tr",
+          null,
+          React.createElement(
+            "th",
+            null,
+            "Damage Taken"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Maximum Damage"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Reduced By"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Type"
+          ),
+          React.createElement(
+            "th",
+            { className: "resistance" },
+            "Resistance Breakdown"
+          )
+        )
+      ),
+      React.createElement(
+        "tbody",
+        null,
+        dataToRender
+      )
     )
   );
 };
@@ -82,47 +95,42 @@ var HitTable = function HitTable(_ref) {
 var DamageType = function DamageType(_ref2) {
   var damageEntry = _ref2.damageEntry;
   return React.createElement(
-    'tr',
-    null,
+    "tr",
+    { className: damageEntry.description },
     React.createElement(
-      'td',
+      "td",
       null,
       damageEntry.totalDamageAfterReduction.toFixed(2)
     ),
     React.createElement(
-      'td',
+      "td",
       null,
       damageEntry.baseDamageAmount.toFixed(2)
     ),
     React.createElement(
-      'td',
+      "td",
       null,
       damageEntry.reducedDamage.toFixed(2)
     ),
     React.createElement(
-      'td',
+      "td",
       null,
       damageEntry.description
     ),
     React.createElement(
-      'td',
-      null,
+      "td",
+      { className: "resistance" },
       damageEntry.reductions.map(function (reduction) {
-        return reduction.source + ' ' + reduction.reducedDamageBy.toFixed(2) + ' (' + (reduction.reducedDamageBy / damageEntry.reducedDamage * 100).toFixed(0) + '%)';
+        return reduction.source + " " + reduction.reducedDamageBy.toFixed(2) + " (" + (reduction.reducedDamageBy / damageEntry.reducedDamage * 100).toFixed(0) + "%)";
       }).join(' ')
     )
   );
 };
 
 function prependLogData(logs) {
-  logData = logs.reduce(function (overall, hit) {
-    overall.push(hit);
-    return overall;
-  }, logData).reverse().slice(0, 20);
-  var container = document.querySelector('#log-container');
-  var root = ReactDOM.createRoot(container);
+  logData.push(logs);
 
-  root.render(logData.map(function (hit) {
+  root.render(logData.reverse().map(function (hit) {
     return React.createElement(HitTable, { hitData: hit });
   }));
 }

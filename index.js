@@ -1,7 +1,7 @@
 'use strict'
 const program = require('commander');
 const consoleRenderer = require('./renderers/console-table')()
-const watch = require('./analyse/liveScan')(consoleRenderer).watchLogFile;
+const watcher = require('./analyse/liveScan')(consoleRenderer);
 const scanner = require('./analyse/scan')(consoleRenderer);
 
 const server = require('./web')();
@@ -9,7 +9,7 @@ const server = require('./web')();
 program
     .command('watch <name> [path]')
     .description(`Watches a neocron log file in real-time`)
-    .action(watch.bind(null, program))
+    .action(watcher.scan.bind(null, program))
 
 program
     .command('scan <name> [path]')

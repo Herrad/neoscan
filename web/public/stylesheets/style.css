@@ -1,31 +1,91 @@
-
 body {
-    margin:0;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: white;
-    background-color: #1E1E1E;
-  }
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
+  background-color: #1E1E1E;
+}
 
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: #252527;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #333333;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-  a {
-    color: #00B7FF;
-  }
-  
-  .hidden {
-    display: none;
-  }
+::-webkit-scrollbar-track {
+  background-color: #252527;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.hidden {
+  display: none;
+}
+
+.hit {
+  width: 80%;
+  margin: auto;
+  border: solid white 2px;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+
+.hit h2 {
+  margin: 20px 0 5px 0;
+  padding-left: 20px;
+}
+
+.hit table {
+  width: 100%;
+}
+
+.hit table th {
+  text-align: left;
+  /* border-left: 1px solid white; */
+  padding-left: 20px
+}
+
+.hit table td {
+  width: 15%;
+  /* border-left: 1px solid white; */
+  padding-left: 20px;
+}
+
+.hit table td.resistance {
+  width: 40%;
+}
+
+.hit table tr.Healing {
+  background-color: yellow;
+  color: black;
+}
+
+.hit table tr.Force {
+  background-color: grey;
+  color: black;
+}
+
+.hit table tr.Piercing {
+  background-color: lightgray;
+  color: black;
+}
+
+.hit table tr.Energy {
+  background-color: blue;
+}
+
+.hit table tr.Fire {
+  background-color: red;
+}
+
+.hit table tr.X-Ray {
+  background-color: cyan;
+  color: black;
+}
