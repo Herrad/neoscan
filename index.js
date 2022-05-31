@@ -4,7 +4,7 @@ const consoleRenderer = require('./renderers/console-table')()
 const watcher = require('./analyse/liveScan')(consoleRenderer);
 const scanner = require('./analyse/scan')(consoleRenderer);
 
-const server = require('./web')();
+const createServer = require('./web');
 
 program
     .command('watch <name> [path]')
@@ -19,7 +19,7 @@ program
 program
     .command('web [path]')
     .description('Launches a web server and page to view logs')
-    .action(server.launch)
+    .action(() => createServer(program.path).launch())
 
 program
     .option('-h, --healing', 'filter out healing results')
