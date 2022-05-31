@@ -11,17 +11,18 @@ export default {
     },
     plugins: [
         replace({
-            'process.env.NODE_ENV': JSON.stringify( 'production' )
+            'process.env.NODE_ENV': JSON.stringify( 'development' )
         }),
         babel({
             exclude: "node_modules/**",
             presets: ["@babel/preset-react"],
             babelHelpers: "bundled",
         }),
+        commonjs(),
         resolve({
             extensions: ['.js', '.jsx'],
             browser: true
         }),
-        commonjs(),
+
     ]
 };

@@ -1,11 +1,15 @@
+import React from 'react'
 import DamageType from './damagetype'
 
 const HitTable = ({ hitData = [] }) => {
+
+    console.log(hitData)
+
+    if (hitData.length === 0) return; 
+
     const dataToRender = hitData.map(damageType => {
       return <DamageType damageEntry={damageType} key={damageType.description} />
     })
-  
-    if (!dataToRender.length) return;
   
     return (
       <div className="hit">
