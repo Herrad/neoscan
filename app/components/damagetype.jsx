@@ -1,6 +1,9 @@
+import React from 'react';
 import Resistance from './resistance'
 
 const DamageType = ({ damageEntry }) => {
+
+    if (damageEntry.length === 0) return;
 
     const resistancesToRender = damageEntry.reductions.map(reduction => {
       return <Resistance reduction={reduction} totalReducedDamage={damageEntry.reducedDamage} key={reduction.source} />
