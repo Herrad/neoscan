@@ -1,10 +1,7 @@
 import React from 'react'
 import DamageType from './damagetype'
 
-const HitTable = ({ hitData = [] }) => {
-
-    console.log(hitData)
-
+const HitTable = ({ hitData }) => {
     if (hitData.length === 0) return; 
 
     const dataToRender = hitData.map(damageType => {
