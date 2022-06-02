@@ -28,7 +28,7 @@ const App = () => {
     }
 
     const hitsToRender = hitHistory.map((hitData) => {
-        return <HitTable hitData={hitData}/>
+        return <HitTable hitData={hitData} />
     });
 
     return hitsToRender;

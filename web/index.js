@@ -5,10 +5,9 @@ const express = require('express');
 const http = require('http');
 const debug = require('debug')('server:server');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const hbs = require('hbs');
 const open = require('open');
+require('hbs')
 
 function createServer(basePath) {
   const socketPort = normalizePort(3001);
@@ -26,7 +25,6 @@ function createServer(basePath) {
   app.use(logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
 
   app.use('/', indexRouter);
@@ -115,7 +113,8 @@ function createServer(basePath) {
         debug('Listening on ' + bind);
       }
 
-      open('http://localhost:3000');
+
+      open(`http://localhost:3000?path=${basePath || process.env.NEOSCAN_LOG_PATH}`);
     }
   }
 }
