@@ -17,6 +17,8 @@ const App = () => {
         ])
     };
 
+    const socket = new WebSocket('ws://localhost:3001');
+
     socket.onmessage = (event) => {
         const message = JSON.parse(event.data);
         switch (message.type) {
@@ -28,7 +30,7 @@ const App = () => {
     }
 
     const hitsToRender = hitHistory.map((hitData) => {
-        return <HitTable hitData={hitData}/>
+        return <HitTable hitData={hitData} />
     });
 
     return hitsToRender;
