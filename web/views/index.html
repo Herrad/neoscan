@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Neoscan</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+</head>
+
+<body>
+  <div id="character-select">
+    <h1>Welcome to Neoscan</h1>
+    <p>This tool will actively scan your character damage logs and render the damage you recieve as you recieve it</p>
+    <p>Note: You must enable logging by adding <span class="code">ENABLELOG = "TRUE"</span> to your neocron.ini file.
+      This
+      file can be found in your neocron game install directory.</p>
+    <p>Please select the the character you would like to monitor:</p>
+    <ul id="character-list">
+
+    </ul>
+  </div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="/javascripts/characterSelect.js"></script>
+</body>
+
+</html>
