@@ -17,8 +17,6 @@ const App = () => {
         ])
     };
 
-    const socket = new WebSocket('ws://localhost:3001');
-
     socket.onmessage = (event) => {
         const message = JSON.parse(event.data);
         switch (message.type) {
