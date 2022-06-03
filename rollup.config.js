@@ -6,12 +6,12 @@ import replace from '@rollup/plugin-replace';
 export default {
     input: 'app/index.js',
     output: {
-        file: 'web/public/javascripts/app.min.js',
+        file: 'electron/app.min.js',
         format: 'cjs',
     },
     plugins: [
         replace({
-            'process.env.NODE_ENV': JSON.stringify( 'development' )
+            'process.env.NODE_ENV': JSON.stringify('development')
         }),
         babel({
             exclude: "node_modules/**",

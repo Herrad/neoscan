@@ -1,37 +1,22 @@
 import React, { useEffect, useState } from "react";
-import HitTable from "./components/hitTable";
-
-const socket = new WebSocket('ws://localhost:3001');
+import CharacterSelect from "./characterSelect";
+import HitResults from "./hitResults";
 
 const App = () => {
-    const [hitHistory, setHitHistory] = useState([]);
+    let [selectedCharacter, selectCharacter] = useState();
+    const logPath = "C:\\Games\\Neocron Evolution 2.5\\logs"
+    const envLogPath = process.env.NEOSCAN_LOG_PATH
+    const basePath = envLogPath || logPath;
 
-    const handleNewLogs = (logs) => {
-        console.log(hitHistory)
-
-        if (hitHistory.length > 4) hitHistory.pop();
-
-        setHitHistory([
-            logs,
-            ...hitHistory,
-        ])
-    };
-
-    socket.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        switch (message.type) {
-            case 'healthy':
-                break;
-            case 'log-data':
-                handleNewLogs(message.logs);
-        }
+    function characterSelected(event) {
+        selectedCharacter = event.target.value;
+        selectCharacter(selectedCharacter);
     }
 
-    const hitsToRender = hitHistory.map((hitData) => {
-        return <HitTable hitData={hitData} />
-    });
-
-    return hitsToRender;
+    if (selectedCharacter) return <HitResults characterName={selectedCharacter} basePath={basePath
+    } />
+    return <CharacterSelect selectFunction={characterSelected} basePath={basePath
+    } />
 }
 
 export default App;
