@@ -16,7 +16,6 @@ const HitResults = ({ characterName, basePath }) => {
     const fileWatcher = createFileWatcher({
       render: logs => {
         if (!logs.length) return;
-        console.log('new logs received')
         handleNewLogs(logs)
       }
     });
