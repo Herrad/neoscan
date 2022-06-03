@@ -4,11 +4,12 @@ const createFileWatcher = require('../analyse/scan');
 
 const HitResults = ({ characterName, basePath }) => {
   const [hitHistory, setHitHistory] = useState([]);
+  let buffer = [];
 
   const handleNewLogs = (logs) => {
-    console.log(hitHistory);
+    buffer = [logs, ...buffer, ...hitHistory];
 
-    setHitHistory([logs, ...hitHistory]);
+    setHitHistory(buffer);
   };
 
   useEffect(() => {
