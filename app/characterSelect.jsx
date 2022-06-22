@@ -11,10 +11,8 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
     const charactersInDirectory = [];
 
     return new Promise((resolve, reject) => {
-      console.log(basePath);
       fs.readdir(basePath, (err, files) => {
         if (err) return reject(err);
-        console.log(files);
 
         files.forEach(file => {
           const matches = file.match(characterRegex);

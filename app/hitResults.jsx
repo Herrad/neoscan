@@ -19,7 +19,6 @@ const HitResults = ({ characterName, basePath }) => {
         handleNewLogs(logs)
       }
     });
-    console.log(basePath, characterName)
     if (characterName) fileWatcher.scan({}, characterName, basePath)
   }, []);
 

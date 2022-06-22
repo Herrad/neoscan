@@ -63,17 +63,15 @@ a {
 
 .hit table td {
   width: 15%;
-  padding: 15px 0 15px 20px;
+  padding: 5px 0 5px 20px;
 }
 
-.hit table td.resistance {
+.hit table td.resistances {
   width: 40%;
-  text-align: right;
 }
 
-.hit table td.resistance span {
-  padding-right: 7%;
-  text-align: right;
+.hit table td.resistances ul {
+  list-style: none;
 }
 
 .hit table tr.Healing {
