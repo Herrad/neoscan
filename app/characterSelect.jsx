@@ -28,7 +28,7 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
 
   useEffect(() => {
     if (basePath) charactersAvailable().then(data => initialiseCharacterList(data))
-  }, basePath)
+  })
 
   async function browseForLogsDirectory() {
     const result = await ipcRenderer.invoke('selectDirectory');

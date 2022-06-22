@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, ipcMain, dialog, BrowserWindow } = require('electron')
-const path = require('path')
+const path = require('path');
+const Store = require('electron-store');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -13,9 +14,19 @@ function createWindow() {
     }
   })
 
-  ipcMain.handle('selectDirectory', async () => await dialog.showOpenDialog(mainWindow, {
-    properties: ['openDirectory']
-  }));
+  const store = new Store();
+
+  ipcMain.handle('selectDirectory', async () => {
+    const result = await dialog.showOpenDialog(mainWindow, {
+      properties: ['openDirectory']
+    });
+    if (!result.canceled && result.filePaths.length > 0) store.set('basePath', result.filePaths[0])
+    return result;
+  });
+
+  ipcMain.handle('getStoreValue', async (event, key) => {
+    return await store.get(key);
+  });
 
   mainWindow.loadFile('index.html')
 

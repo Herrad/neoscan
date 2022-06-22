@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CharacterSelect from "./characterSelect";
 import HitResults from "./hitResults";
+const { ipcRenderer } = window.require('electron');
 
 const App = () => {
     let [selectedCharacter, selectCharacter] = useState();
@@ -12,10 +13,18 @@ const App = () => {
     }
 
     function characterSelected(event) {
-        console.log('characterSelected')
         selectedCharacter = event.target.value;
         selectCharacter(selectedCharacter);
     }
+
+    useEffect(() => {
+        async function getConfiguredBasePath() {
+            const configuredBasePath = await ipcRenderer.invoke('getStoreValue', 'basePath');
+            console.log('Configured Base Path:', configuredBasePath);
+            setBasePath(configuredBasePath);
+        }
+        getConfiguredBasePath();
+    }, [])
 
     if (selectedCharacter && basePath) return <HitResults characterName={selectedCharacter} basePath={basePath
     } />
