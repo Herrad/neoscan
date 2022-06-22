@@ -39,7 +39,7 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
   function getPathSelection() {
     if (basePath) {
       return (
-        <select id="character-select" onChange={selectFunction}>
+        <select multiple="multiple" id="character-select" onChange={selectFunction}>
           {characters.map(character => <Character key={character.name} name={character.name} />)}
         </select>)
     }
@@ -48,7 +48,7 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
   }
 
   return (
-    <div key="character-select-content">
+    <div key="character-select-content" id="character-select-content">
       <h1>Welcome to Neoscan</h1>
       <p>This tool will actively scan your character damage logs and render the damage you recieve as you recieve it</p>
       <p>Note: You must enable logging by adding <span className="code">ENABLELOG = "TRUE"</span> to your neocron.ini file.
