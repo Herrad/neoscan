@@ -29,13 +29,11 @@ module.exports = function scanner(renderer) {
     resistances.forEach(resistance => {
       remainingDamage = toFixed3Digits(remainingDamage - resistance.value);
       runningTotal = toFixed3Digits(runningTotal + resistance.value);
-      const percentage = toFixed3Digits(runningTotal / amount * 100);
       console.log(resistance.type, remainingDamage, runningTotal, percentage);
       lines.push(`Damage: ${remainingDamage} (Reduction: ${runningTotal} - ${percentage} Percentage) - Damage reduced by player ${resistance.type}`);
     })
     const percentage = toFixed3Digits(runningTotal / amount * 100);
     lines.push(`Results of this target: Damage ${remainingDamage} (Reduction: ${runningTotal} - ${percentage} Percentage) - ResistanceCap: 0.760!`)
-    console.log(lines.join('\n'));
     return lines;
   }
 
