@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import HitTable from "./components/hitTable";
 const createFileWatcher = require('../analyse/simulation');
 
-const HitResults = ({ characterName, basePath }) => {
+const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
   const [hitHistory, setHitHistory] = useState([]);
   let buffer = [];
 
@@ -26,7 +26,10 @@ const HitResults = ({ characterName, basePath }) => {
     return <HitTable hitData={hitData} key={`hit-${i}`} />
   });
 
-  return hitsToRender;
+  return (<div id="hit-content">
+    <a onClick={resetCharacterSelected}>Return to Character Selection</a>
+    {hitsToRender}
+  </div>);
 }
 
 export default HitResults;

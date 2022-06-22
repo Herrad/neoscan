@@ -13,6 +13,10 @@ const App = () => {
     }
 
     function characterSelected(event) {
+        if (!event) {
+            selectedCharacter = undefined;
+            selectCharacter(undefined);
+        }
         selectedCharacter = event.target.value;
         selectCharacter(selectedCharacter);
     }
@@ -27,7 +31,7 @@ const App = () => {
     }, [])
 
     if (selectedCharacter && basePath) return <HitResults characterName={selectedCharacter} basePath={basePath
-    } />
+    } resetCharacterSelected={() => characterSelected()} />
     return <CharacterSelect selectFunction={characterSelected} basePathSelectFunction={setBasePath
     } basePath={basePath} />
 }

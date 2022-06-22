@@ -38,13 +38,22 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
 
   function getPathSelection() {
     if (basePath) {
-      return (
+      return (<div>
         <select multiple="multiple" id="character-select" onChange={selectFunction}>
-          {characters.map(character => <Character key={character.name} name={character.name} />)}
-        </select>)
+          {characters.map(character => {
+            if (character.name !== 'Damage') return <Character key={character.name} name={character.name} />
+          })}
+        </select>
+        <div id="browse">
+          <span>Browse to your game log directory (typically this is the logs folder within your Neocron install directory)<button onClick={browseForLogsDirectory}>Browse...</button></span>
+          <span>Currently Selected: {basePath}</span>
+        </div>
+      </div>)
     }
-    return (<p>Please select your game log directory <button onClick={browseForLogsDirectory
-    } >Browse</button></p>)
+    return (<div>
+      <span>Please select your game log directory:</span>
+      <span id="browse"><button onClick={browseForLogsDirectory}>Browse</button></span>
+    </div>)
   }
 
   return (
