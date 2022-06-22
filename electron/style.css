@@ -91,17 +91,21 @@ a {
   color: black;
 }
 
-.hit table tr.Energy {
-  background-color: blue;
-}
-
 .hit table tr.Fire {
   background-color: red;
+}
+
+.hit table tr.Energy {
+  background-color: blue;
 }
 
 .hit table tr.X-Ray {
   background-color: cyan;
   color: black;
+}
+
+.hit table tr.Poison {
+  background-color: green;
 }
 
 /* #controls {
