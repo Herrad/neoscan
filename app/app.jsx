@@ -12,6 +12,7 @@ const App = () => {
     }
 
     function characterSelected(event) {
+        console.log('characterSelected')
         selectedCharacter = event.target.value;
         selectCharacter(selectedCharacter);
     }

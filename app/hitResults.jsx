@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HitTable from "./components/hitTable";
-const createFileWatcher = require('../analyse/scan');
+const createFileWatcher = require('../analyse/liveScan');
 
 const HitResults = ({ characterName, basePath }) => {
   const [hitHistory, setHitHistory] = useState([]);

@@ -30,7 +30,7 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
 
   useEffect(() => {
     if (basePath) charactersAvailable().then(data => initialiseCharacterList(data))
-  }, [])
+  }, basePath)
 
   async function browseForLogsDirectory() {
     const result = await ipcRenderer.invoke('selectDirectory');
@@ -39,10 +39,12 @@ const CharacterSelect = ({ selectFunction, basePathSelectFunction, basePath }) =
   }
 
   function getPathSelection() {
-    if (basePath) return (
-      <select id="character-select" onChange={selectFunction}>
-        {characters.map(character => <Character key={character.name} name={character.name} />)}
-      </select>)
+    if (basePath) {
+      return (
+        <select id="character-select" onChange={selectFunction}>
+          {characters.map(character => <Character key={character.name} name={character.name} />)}
+        </select>)
+    }
     return (<p>Please select your game log directory <button onClick={browseForLogsDirectory
     } >Browse</button></p>)
   }
