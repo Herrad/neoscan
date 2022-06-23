@@ -43,14 +43,16 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./icons/win/icon.ico"
+      },
       "publishers": [
         {
           "name": "@electron-forge/publisher-github",
           "config": {
             "repository": {
               "owner": "herrad",
-              "name": "neoscan"
+              "name": "Neoscan"
             },
             "draft": true
           }

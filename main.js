@@ -1,3 +1,7 @@
+// Modules to control application life and create native browser window
+const { app, ipcMain, dialog, BrowserWindow } = require('electron')
+const path = require('path');
+const Store = require('electron-store');
 
 if (handleSquirrelEvent()) return;
 
@@ -48,11 +52,6 @@ function handleSquirrelEvent() {
       return true;
   }
 };
-
-// Modules to control application life and create native browser window
-const { app, ipcMain, dialog, BrowserWindow } = require('electron')
-const path = require('path');
-const Store = require('electron-store');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
