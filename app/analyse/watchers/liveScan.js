@@ -1,17 +1,15 @@
 'use strict'
 const Tail = require('tail').Tail
-const LineParser = require('./lineParser');
-const crash = require('../crash');
-const logFile = require('./logFile')
+import LineParser from '../lineParser';
+import logFile from '../logFile';
 
-module.exports = function createLiveScanner(renderer) {
+function FileWatcher(renderer) {
     const parser = new LineParser(renderer);
 
     function poll(options, path) {
         const scan = new Tail(path);
 
         scan.on('line', parser.parse.bind(null, options));
-        scan.on('error', crash);
     }
 
     return {
@@ -20,3 +18,5 @@ module.exports = function createLiveScanner(renderer) {
         }
     }
 }
+
+export default FileWatcher

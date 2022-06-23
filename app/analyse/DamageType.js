@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = function (description, baseDamageAmount) {
+function DamageType(description, baseDamageAmount) {
     const reductions = [];
     return {
         registerReduction: function (source, damageAfterReduction, totalPercentage) {
@@ -26,3 +26,5 @@ module.exports = function (description, baseDamageAmount) {
         }
     }
 }
+
+export default DamageType

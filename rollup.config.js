@@ -6,19 +6,19 @@ import replace from '@rollup/plugin-replace';
 export default {
     input: 'app/index.js',
     output: {
-        file: 'web/public/javascripts/app.min.js',
+        file: 'app.min.js',
         format: 'cjs',
     },
     plugins: [
         replace({
-            'process.env.NODE_ENV': JSON.stringify( 'development' )
+            'process.env.NODE_ENV': JSON.stringify('development')
         }),
         babel({
             exclude: "node_modules/**",
             presets: ["@babel/preset-react"],
             babelHelpers: "bundled",
         }),
-        commonjs(),
+        commonjs({ transformMixedEsModules: true }),
         resolve({
             extensions: ['.js', '.jsx'],
             browser: true

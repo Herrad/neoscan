@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from "react";
-import HitTable from "./components/hitTable";
-
-const socket = new WebSocket('ws://localhost:3001');
+import CharacterSelect from "./characterSelect";
+import HitResults from "./hitResults";
+const { ipcRenderer } = window.require('electron');
 
 const App = () => {
-    const [hitHistory, setHitHistory] = useState([]);
+    let [selectedCharacter, selectCharacter] = useState();
+    let [basePath, selectBasePath] = useState();
 
-    const handleNewLogs = (logs) => {
-        console.log(hitHistory)
-
-        if (hitHistory.length > 4) hitHistory.pop();
-
-        setHitHistory([
-            logs,
-            ...hitHistory,
-        ])
-    };
-
-    socket.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        switch (message.type) {
-            case 'healthy':
-                break;
-            case 'log-data':
-                handleNewLogs(message.logs);
-        }
+    function setBasePath(path) {
+        basePath = path;
+        selectBasePath(basePath);
     }
 
-    const hitsToRender = hitHistory.map((hitData) => {
-        return <HitTable hitData={hitData} />
-    });
+    function characterSelected(event) {
+        if (!event) {
+            selectedCharacter = undefined;
+            selectCharacter(undefined);
+            return;
+        }
+        selectedCharacter = event.target.value;
+        selectCharacter(selectedCharacter);
+    }
 
-    return hitsToRender;
+    useEffect(() => {
+        async function getConfiguredBasePath() {
+            const configuredBasePath = await ipcRenderer.invoke('getStoreValue', 'basePath');
+            console.log('Configured Base Path:', configuredBasePath);
+            setBasePath(configuredBasePath);
+        }
+        getConfiguredBasePath();
+    }, [])
+
+    if (selectedCharacter && basePath) return <HitResults characterName={selectedCharacter} basePath={basePath
+    } resetCharacterSelected={() => characterSelected()} />
+    return <CharacterSelect selectFunction={characterSelected} basePathSelectFunction={setBasePath
+    } basePath={basePath} />
 }
 
 export default App;
