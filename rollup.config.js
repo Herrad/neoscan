@@ -18,7 +18,7 @@ export default {
             presets: ["@babel/preset-react"],
             babelHelpers: "bundled",
         }),
-        commonjs(),
+        commonjs({ transformMixedEsModules: true }),
         resolve({
             extensions: ['.js', '.jsx'],
             browser: true

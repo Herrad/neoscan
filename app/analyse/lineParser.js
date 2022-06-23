@@ -1,7 +1,7 @@
 'use strict'
-const Hit = require('../Hit');
+import Hit from './Hit';
 
-module.exports = function createParser(renderer) {
+function LineParser(renderer) {
     const newTypeRegex = new RegExp(/Damage:\s(\-?[0-9]+\.[0-9]+)\sTarget\s([\w\-]+)\s/);
     const newHitRegex = new RegExp(/Local Player:Damage/);
     const newReductionRegex = new RegExp(/Damage:\s([0-9]+\.[0-9]+)\s\(Reduction: ([0-9]+\.[0-9]+)\s\-\s([0-9]+\.[0-9]+)\sPercentage\)\s\-[\w\s]+(armor|skills|shield)/);
@@ -13,26 +13,26 @@ module.exports = function createParser(renderer) {
 
     return {
         parse: function (options, line) {
-            if(line.startsWith('Character System: Acceleration ')) return;
+            if (line.startsWith('Character System: Acceleration ')) return;
 
-            if(newHitRegex.test(line)) {
+            if (newHitRegex.test(line)) {
                 currentHit.close();
                 currentHit = new Hit(renderer);
                 return;
             }
 
             const newType = newTypeRegex.exec(line);
-            if(newType && newType.length) {
+            if (newType && newType.length) {
                 const damage = parseFloat(newType[1]);
                 let type = newType[2];
-                if(damage < 0) type = 'Healing'
-                if(typeIsFilteredOut(type, options)) return;
+                if (damage < 0) type = 'Healing'
+                if (typeIsFilteredOut(type, options)) return;
                 currentHit.regesterType(type, damage);
                 return;
             }
 
             const newReduction = newReductionRegex.exec(line);
-            if(newReduction && newReduction.length) {
+            if (newReduction && newReduction.length) {
                 const damageAfterReduction = parseFloat(newReduction[1]);
                 const ongoingTotalReduction = parseFloat(newReduction[2]);
                 const ongoingTotalPercentage = parseFloat(newReduction[3]);
@@ -43,3 +43,5 @@ module.exports = function createParser(renderer) {
         }
     }
 }
+
+export default LineParser

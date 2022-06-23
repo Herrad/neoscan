@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HitTable from "./components/hitTable";
-const createFileWatcher = require('../analyse/simulation');
+import FileWatcher from './analyse/watchers/simulation';
 
 const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
   const [hitHistory, setHitHistory] = useState([]);
@@ -13,7 +13,7 @@ const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
   };
 
   useEffect(() => {
-    const fileWatcher = createFileWatcher({
+    const fileWatcher = new FileWatcher({
       render: logs => {
         if (!logs.length) return;
         handleNewLogs(logs)

@@ -1,7 +1,7 @@
 'use strict'
-const LineParser = require('./lineParser');
+import LineParser from '../lineParser';
 
-module.exports = function scanner(renderer) {
+function FileWatcher(renderer) {
   const parser = new LineParser(renderer);
 
   function beginSimulation() {
@@ -48,3 +48,5 @@ module.exports = function scanner(renderer) {
     }
   }
 }
+
+export default FileWatcher

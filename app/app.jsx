@@ -16,6 +16,7 @@ const App = () => {
         if (!event) {
             selectedCharacter = undefined;
             selectCharacter(undefined);
+            return;
         }
         selectedCharacter = event.target.value;
         selectCharacter(selectedCharacter);

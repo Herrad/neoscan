@@ -1,7 +1,7 @@
 'use strict'
-const DamageType = require('./DamageType');
+import DamageType from './DamageType';
 
-module.exports = function (renderer) {
+function Hit(renderer) {
     let currentType = 0;
 
     const damageData = [];
@@ -35,3 +35,5 @@ module.exports = function (renderer) {
         }
     }
 }
+
+export default Hit

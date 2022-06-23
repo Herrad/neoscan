@@ -2,7 +2,9 @@
 const logPath = "C:\\Games\\Neocron Evolution 2.5\\logs"
 const envLogPath = process.env.NEOSCAN_LOG_PATH
 
-module.exports = function createPath(characterName, basePath) {
+function LogFile(characterName, basePath) {
     basePath = basePath || envLogPath || logPath;
     return `${basePath}\\${characterName}_00.log`;
 }
+
+export default LogFile
