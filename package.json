@@ -1,6 +1,6 @@
 {
   "name": "neoscan",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Scanning neocron damage log files",
   "repository": {
     "type": "git",
