@@ -6,8 +6,8 @@ Logging for Neocron resists
 
 To enable logging add ENABLELOG="TRUE" to your neocron.ini
 
-## Running
+## Installation
 
-To start neoscan run the command:
+Neoscan currently only supports windows.
 
-`node . watch <characterName>`
+Download the neoscan setup executable from [Releases](https://github.com/Herrad/neoscan/releases/latest)
