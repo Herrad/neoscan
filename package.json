@@ -51,7 +51,8 @@
             "repository": {
               "owner": "herrad",
               "name": "neoscan"
-            }
+            },
+            "draft": true
           }
         }
       ],
