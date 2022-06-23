@@ -6,7 +6,7 @@ import replace from '@rollup/plugin-replace';
 export default {
     input: 'app/index.js',
     output: {
-        file: 'electron/app.min.js',
+        file: 'app.min.js',
         format: 'cjs',
     },
     plugins: [

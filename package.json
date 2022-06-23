@@ -6,31 +6,64 @@
     "type": "git",
     "url": "https://github.com/Herrad/neoscan"
   },
-  "main": "electron electron/main.js",
+  "main": "main.js",
   "scripts": {
-    "test": "mocha tests/**/*.js",
     "build": "rollup -c",
-    "electron": "electron electron/main.js"
+    "electron": "electron electron/main.js",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
-  "bin": {
-    "neoscan": "bin/neoscan"
-  },
-  "author": "",
+  "author": "herrad.koe@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "electron": "^19.0.2",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tail": "^2.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@electron-forge/maker-deb": "^6.0.0-beta.64",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
+    "@electron-forge/maker-zip": "^6.0.0-beta.64",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
+    "electron": "^19.0.6",
     "rollup": "^2.75.4"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "neoscan"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }

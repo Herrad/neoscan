@@ -1,5 +1,5 @@
 'use strict'
-import Tail from 'tail';
+const Tail = require('tail').Tail
 import LineParser from '../lineParser';
 import logFile from '../logFile';
 
