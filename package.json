@@ -9,7 +9,7 @@
   "main": "main.js",
   "scripts": {
     "build": "rollup -c",
-    "electron": "electron electron/main.js",
+    "electron": "electron main.js",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
