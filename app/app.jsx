@@ -31,10 +31,10 @@ const App = () => {
         getConfiguredBasePath();
     }, [])
 
-    if (selectedCharacter && basePath) return <HitResults characterName={selectedCharacter} basePath={basePath
-    } resetCharacterSelected={() => characterSelected()} />
-    return <CharacterSelect selectFunction={characterSelected} basePathSelectFunction={setBasePath
-    } basePath={basePath} />
+    if (selectedCharacter && basePath)
+        return <HitResults characterName={selectedCharacter} basePath={basePath} resetCharacterSelected={() => characterSelected()} />
+
+    return <CharacterSelect selectFunction={characterSelected} basePathSelectFunction={setBasePath} basePath={basePath} />
 }
 
 export default App;
