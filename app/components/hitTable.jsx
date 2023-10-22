@@ -10,7 +10,9 @@ const HitTable = ({ hitData, filterState }) => {
 
   const getClasses = () => {
     let allHidden = true;
-    allHidden = hitData.reduce((allHidden, damageType) => allHidden = allHidden && !filterState[damageType.description])
+    console.log(hitData)
+    hitData.map((damageType) => allHidden = allHidden && !filterState[damageType.description])
+    console.log('allHidden', allHidden);
     return allHidden;
   }
 

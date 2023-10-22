@@ -47,7 +47,7 @@ const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
   return (<div id="hit-content">
     <a onClick={resetCharacterSelected}>Return to Character Selection</a>
     <ul>
-      {Object.keys(allowedDamageTypes).map((damageType) => <li key={damageType}><input type="checkbox" name={damageType} onChange={toggleDamageType} checked={allowedDamageTypes[damageType]}></input><label htmlFor={damageType}>{damageType}</label></li>)}
+      {Object.keys(allowedDamageTypes).map((damageType) => <li key={damageType}><input type="checkbox" name={damageType} onClick={toggleDamageType} defaultChecked="true"></input><label htmlFor={damageType}>{damageType}</label></li>)}
     </ul>
     {hitsToRender}
   </div >);
