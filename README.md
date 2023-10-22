@@ -16,4 +16,4 @@ Download the neoscan setup executable from [Releases](https://github.com/Herrad/
 
 We are accepting pull requests.
 
-Releases are generated from the `master` branch using a combination of the `npm run package` and `npm run publish`. Publishing the package will generate a new github release based on the npm package version (overwriting the existing release if it exists).
+Releases are generated automatically as new tags are created on the `master` branch. Publishing the package will generate a new github release based on the npm package version.
