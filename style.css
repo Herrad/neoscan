@@ -68,6 +68,36 @@ a {
   margin-left: 30px;
 }
 
+#damage-filters-title {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+#damage-filters {
+  display: flex;
+  margin-top: 2px;
+  padding: 0;
+}
+
+#damage-filters li {
+  list-style-type: none;
+  padding: 15px 10px;
+  border: 1px solid white;
+  border-left: 0;
+}
+
+#damage-filters li:first-child {
+  border-left: 1px solid white;
+}
+
+#damage-filters label:hover {
+  cursor: pointer;
+}
+
+#damage-filters input {
+  margin-right: 5px;
+}
+
 #hit-content {
   width: 80%;
   margin: 20px auto;

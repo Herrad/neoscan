@@ -8,13 +8,13 @@ const HitTable = ({ hitData, filterState }) => {
     return <DamageType damageEntry={damageType} filterState={filterState} key={damageType.description} />
   })
 
-  const getClasses = () => {
+  const shouldDisplayHit = () => {
     let allHidden = true;
-    hitData.map((damageType) => allHidden = allHidden && !filterState[damageType.description])
+    hitData.map(damageType => allHidden = allHidden && !filterState[damageType.description])
     return allHidden;
   }
 
-  return getClasses() ? '' : (
+  return shouldDisplayHit() ? '' : (
     <div className="hit">
       <h2>Hit Registered!</h2>
       <table>
