@@ -1,14 +1,20 @@
 import React from 'react'
 import DamageType from './damagetype'
 
-const HitTable = ({ hitData }) => {
+const HitTable = ({ hitData, filterState }) => {
   if (hitData.length === 0) return;
 
   const dataToRender = hitData.map(damageType => {
-    return <DamageType damageEntry={damageType} key={damageType.description} />
+    return <DamageType damageEntry={damageType} filterState={filterState} key={damageType.description} />
   })
 
-  return (
+  const shouldDisplayHit = () => {
+    let allHidden = true;
+    hitData.map(damageType => allHidden = allHidden && !filterState[damageType.description])
+    return allHidden;
+  }
+
+  return shouldDisplayHit() ? '' : (
     <div className="hit">
       <h2>Hit Registered!</h2>
       <table>
