@@ -2,7 +2,7 @@
 import Hit from './Hit';
 
 function TargetDamageLineParser(renderer, characterName) {
-  const newHitRegex = new RegExp(`DAMAGEINFO - Time [0-9\.]+ Damage \(${characterName}\)`);
+  const newHitRegex = new RegExp(`DAMAGEINFO - Time [0-9\\.]+ Damage \\(${characterName}\\)`);
   const newTypeRegex = new RegExp(/INS\s-\s([A-Z]+):\s([0-9\.]+)/);
   const typeMap = {
     PRC: 'Piercing',
@@ -17,6 +17,9 @@ function TargetDamageLineParser(renderer, characterName) {
   function typeIsFilteredOut(type, options) {
     return Object.keys(options).reduce((result, filter) => result || filter === type.toLowerCase(), false);
   }
+
+  console.log('looking for new hits matching', newHitRegex)
+  console.log('looking for new damage types matching', newTypeRegex)
 
   return {
     parse: function (options, line) {

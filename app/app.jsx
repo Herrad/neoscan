@@ -33,10 +33,10 @@ const App = () => {
     }, [])
 
     if (selectedCharacter && basePath)
-        return (<div>
+        return <>
             <HitResults characterName={selectedCharacter} basePath={basePath} resetCharacterSelected={() => characterSelected()} />
             <DPSCounter characterName={selectedCharacter} />
-        </div>)
+        </>
 
     return <CharacterSelect selectFunction={characterSelected} basePathSelectFunction={setBasePath} basePath={basePath} />
 }

@@ -29,6 +29,10 @@ a {
   display: none;
 }
 
+#root {
+  display: flex;
+}
+
 #character-select-content {
   margin: 0 10%;
   font-size: 24px;
@@ -99,8 +103,9 @@ a {
 }
 
 #hit-content {
-  width: 80%;
+  width: 90%;
   margin: 20px auto;
+  padding: 20px;
   font-size: 18px;
 }
 
