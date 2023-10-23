@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import HitTable from "./components/hitTable";
 import FileWatcher from './analyse/watchers/liveScan';
+import TargetDamageFileWatcher from "./analyse/watchers/targetDamageScan";
 
-const DAMAGE_TYPES = [
-  "Healing", "Force", "Piercing", "Fire", "Energy", "XRay", "Poison"
-]
 
 const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
   const [hitHistory, setHitHistory] = useState([]);
@@ -37,7 +35,9 @@ const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
         handleNewLogs(logs)
       }
     });
-    if (characterName) fileWatcher.scan({}, characterName, basePath)
+    if (characterName) {
+      fileWatcher.scan({}, characterName, basePath)
+    }
   }, []);
 
   const hitsToRender = hitHistory.map((hitData, i) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CharacterSelect from "./characterSelect";
 import HitResults from "./hitResults";
+import DPSCounter from "./dpsCounter";
 const { ipcRenderer } = window.require('electron');
 
 const App = () => {
@@ -32,7 +33,10 @@ const App = () => {
     }, [])
 
     if (selectedCharacter && basePath)
-        return <HitResults characterName={selectedCharacter} basePath={basePath} resetCharacterSelected={() => characterSelected()} />
+        return (<div>
+            <HitResults characterName={selectedCharacter} basePath={basePath} resetCharacterSelected={() => characterSelected()} />
+            <DPSCounter characterName={selectedCharacter} />
+        </div>)
 
     return <CharacterSelect selectFunction={characterSelected} basePathSelectFunction={setBasePath} basePath={basePath} />
 }
