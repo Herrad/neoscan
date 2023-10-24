@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TargetDamageFileWatcher from './analyse/watchers/targetDamageScan';
 
 const DPSCounter = ({ characterName, basePath }) => {
@@ -27,7 +27,6 @@ const DPSCounter = ({ characterName, basePath }) => {
   }
 
   useEffect(() => {
-    clearShots();
     if (!characterName) return;
     const targetDamageFileWatcher = new TargetDamageFileWatcher({
       render: logs => {
@@ -36,10 +35,11 @@ const DPSCounter = ({ characterName, basePath }) => {
       }
     }, characterName)
     targetDamageFileWatcher.scan({}, basePath)
+    clearShots();
   }, []);
 
 
-  return <div id="dpsCounter">
+  return (<div id="dpsCounter">
     <h2>Total Damage over last 5 seconds</h2>
     <span>{lastTotal.total}</span>
     <h2>Average DPS</h2>
@@ -55,7 +55,7 @@ const DPSCounter = ({ characterName, basePath }) => {
         })}
       </tbody>
     </table>
-  </div>
+  </div>)
 }
 
 export default DPSCounter;
