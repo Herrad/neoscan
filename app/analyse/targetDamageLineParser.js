@@ -2,11 +2,12 @@
 import Hit from './Hit';
 
 function TargetDamageLineParser(renderer, characterName) {
-  const newHitRegex = new RegExp(`DAMAGEINFO - Time [0-9\\.]+ Damage \\(${characterName}\\)`);
+  const newHitRegex = new RegExp(/DAMAGEINFO\s-\sTime\s[0-9\\.]+ Damage/);
+  const recordHitRegex = new RegExp(`DAMAGEINFO - Time [0-9\\.]+ Damage \\(${characterName}\\)`);
   const newTypeRegex = new RegExp(/INS\s-\s([A-Z]+):\s([0-9\.]+)/);
   const typeMap = {
-    PRC: 'Piercing',
-    FOR: 'Force',
+    PCR: 'Piercing',
+    FCR: 'Force',
     POR: 'Poison',
     FIR: 'Fire',
     ENR: 'Energy',
@@ -24,15 +25,19 @@ function TargetDamageLineParser(renderer, characterName) {
   return {
     parse: function (options, line) {
       if (newHitRegex.test(line)) {
-        currentHit.close();
-        currentHit = new Hit(renderer);
+        if (currentHit) currentHit.close();
+        currentHit = undefined;
+        if (recordHitRegex.test(line)) {
+          console.log('line matched record', line)
+          currentHit = new Hit(renderer);
+        }
         return;
       }
 
       const newType = newTypeRegex.exec(line);
-      if (newType && newType.length) {
-        const damage = parseFloat(newType[1]);
-        let type = typeMap[newType[0]];
+      if (currentHit && newType && newType.length) {
+        const damage = parseFloat(newType[2]);
+        let type = typeMap[newType[1]];
         if (damage < 0) type = 'Healing'
         if (typeIsFilteredOut(type, options)) return;
         currentHit.regesterType(type, damage);

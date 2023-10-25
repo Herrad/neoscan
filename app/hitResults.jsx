@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HitTable from "./components/hitTable";
 import FileWatcher from './analyse/watchers/liveScan';
-import TargetDamageFileWatcher from "./analyse/watchers/targetDamageScan";
-
 
 const HitResults = ({ characterName, basePath, resetCharacterSelected }) => {
   const [hitHistory, setHitHistory] = useState([]);

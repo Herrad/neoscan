@@ -3,6 +3,7 @@ import DamageType from './DamageType';
 
 function Hit(renderer) {
     let currentType = 0;
+    let isClosed = false;
 
     const damageData = [];
 
@@ -14,8 +15,10 @@ function Hit(renderer) {
     }
 
     function log() {
+        if (isClosed) return;
         closeType();
         renderer.render(damageData);
+        isClosed = true;
     }
 
     const logTimeout = setTimeout(log, 500);

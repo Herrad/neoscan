@@ -5,6 +5,7 @@ import DPSCounter from "./dpsCounter";
 const { ipcRenderer } = window.require('electron');
 
 const App = () => {
+    console.log('App Render')
     let [selectedCharacter, selectCharacter] = useState();
     let [basePath, selectBasePath] = useState();
 
