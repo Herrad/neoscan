@@ -47,7 +47,7 @@ const DPSCounter = ({ characterName, basePath }) => {
 
   return (<div id="dpsCounter">
     <h2>Damage Summary (last 30 seconds)</h2>
-    <h2>Shots fired: {lastTotal.shotsCounted}</h2>
+    <h2>Hits registered: {lastTotal.shotsCounted}</h2>
     <h2>Total Damage: {lastTotal.total}</h2>
     <h2>Average DPS: {lastTotal.averageDps}</h2>
     <table className="breakdown">
