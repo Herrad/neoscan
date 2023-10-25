@@ -2,7 +2,7 @@
 import Hit from './Hit';
 
 function TargetDamageLineParser(renderer, characterName) {
-  const newHitRegex = new RegExp(/DAMAGEINFO\s-\sTime\s[0-9\\.]+ Damage/);
+  const newHitRegex = new RegExp(/DAMAGEINFO\s-\sTime\s[0-9\.]+ Damage \(([a-zA-Z0-9\s\-]+)\)/);
   const recordHitRegex = new RegExp(`DAMAGEINFO - Time [0-9\\.]+ Damage \\(${characterName}\\)`);
   const newTypeRegex = new RegExp(/INS\s-\s([A-Z]+):\s([0-9\.]+)/);
   const typeMap = {
@@ -24,11 +24,14 @@ function TargetDamageLineParser(renderer, characterName) {
 
   return {
     parse: function (options, line) {
-      if (newHitRegex.test(line)) {
+      const newHit = newHitRegex.exec(line);
+      if (newHit && newHit.length) {
         if (currentHit) currentHit.close();
         currentHit = undefined;
         if (recordHitRegex.test(line)) {
           currentHit = new Hit(renderer);
+        } else {
+          renderer.addDamageSource(newHit[1])
         }
         return;
       }
