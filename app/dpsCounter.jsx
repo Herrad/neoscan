@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import TargetDamageFileWatcher from './analyse/watchers/targetDamageScan';
 
 const DPSCounter = ({ characterName, basePath }) => {
-  console.log('Render')
   const [encounters, setEncounters] = useState([]);
+
   let shotBuffer = [];
   let damageSources = [];
   let timeout;
@@ -22,8 +22,7 @@ const DPSCounter = ({ characterName, basePath }) => {
     shotBuffer.map(shot => shot.map(damageType => encounter.totalDamage += damageType.baseDamageAmount))
     encounter.averageDps = (encounter.totalDamage / timeInSeconds).toFixed(2);
 
-    let tempEncounters = [encounter, ...encounters];
-    setEncounters(tempEncounters);
+    setEncounters((previousEncounters) => [encounter, ...previousEncounters]);
 
     damageSources = [];
     shotBuffer = []
