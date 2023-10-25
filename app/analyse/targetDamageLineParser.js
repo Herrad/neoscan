@@ -28,7 +28,6 @@ function TargetDamageLineParser(renderer, characterName) {
         if (currentHit) currentHit.close();
         currentHit = undefined;
         if (recordHitRegex.test(line)) {
-          console.log('line matched record', line)
           currentHit = new Hit(renderer);
         }
         return;
